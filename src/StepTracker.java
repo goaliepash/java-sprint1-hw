@@ -13,12 +13,13 @@ public class StepTracker {
 
     public void setStepsNumber(int month, int day, int steps) {
         if (isMonthNumberCorrect(month) & isDayNumberCorrect(day) & isStepsNumberPositive(steps)) {
-            monthData[month].stepsPerDays[day] = steps;
+            monthData[month - 1].stepsPerDays[day - 1] = steps;
         }
     }
 
     public void printStatsByMonth(int monthNumber) {
         if (isMonthNumberCorrect(monthNumber)) {
+            monthNumber--;
             printNumberOfSteps(monthNumber);
             printMaxNumberOfSteps(monthNumber);
             printAverageNumberOfSteps(monthNumber);
@@ -35,16 +36,16 @@ public class StepTracker {
     }
 
     private boolean isMonthNumberCorrect(int month) {
-        if (month < 0 || month > 11) {
-            System.out.println("Указан неверный номер месяца. Диапазон должен быть от 0 до 11 включительно.");
+        if (month < 1 || month > 12) {
+            System.out.println("Указан неверный номер месяца. Диапазон должен быть от 1 до 12 включительно.");
             return false;
         }
         return true;
     }
 
     private boolean isDayNumberCorrect(int day) {
-        if (day < 0 || day > 29) {
-            System.out.println("Указан неверный номер дня. Диапазон должен быть от 0 до 29 включительно.");
+        if (day < 1 || day > 30) {
+            System.out.println("Указан неверный номер дня. Диапазон должен быть от 1 до 30 включительно.");
             return false;
         }
         return true;
